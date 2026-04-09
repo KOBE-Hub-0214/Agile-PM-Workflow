@@ -10,6 +10,7 @@
 
 - 💬 **告别填表，对话式采集**：采用灵活的对话式需求采集，AI 主动评估维度并温和追问，极大地降低了认知门槛。
 - 🎨 **原型先行验证**：在编写复杂的业务逻辑前，先让 AI 产出高保真 HTML 原型。通过"看图说话"，直观发现逻辑漏洞。
+- 🎯 **集成 Impeccable 专业前端设计工具链**：原型生成阶段强制调用 [Impeccable Skills](https://impeccable.style/) 的 21 个设计指令（`/arrange` 布局、`/typeset` 排版、`/colorize` 配色、`/delight` 微交互、`/polish` 打磨、`/critique` 自查等），确保产出专业级 UI 质量，告别"AI 味"设计。
 - 🔗 **PRD 与原型双向联动**：文档与原型不再割裂。在工作流中，PRD 逻辑和原型视觉同步进行迭代优化，保证所想即所见。
 - 🧩 **沙盒切片，所见即所得的 PRD**：最终产出的 HTML 版 PRD 中，直接以 `iframe` 沙盒切片的形式嵌入可交互的原型。左边是规则描述，右边是真实界面。
 - 📄 **双格式 PRD 产出（HTML + Word）**：同时生成 HTML 交互版和 Word 文档版（`.docx`）。Word 版使用 `python-docx` 生成，可直接导入**飞书知识库**，原型以截图+链接方式呈现，流程图以 PNG 静态图片插入。
@@ -36,7 +37,7 @@
 | 1 | 对话式需求采集与确认 | 结构化需求理解（至少 3 轮深度追问） |
 | 2 | 项目初始化与目录搭建 | `prd/` `prototype/` `flowcharts/` `screenshots/` `annex/` `templates/` |
 | 3 | 输出详细的第一版 PRD | `prd_v1.0.html` + `prd_v1.0.docx`（双格式） |
-| 4 | 产出高保真 HTML 原型 | 单文件 HTML 原型（Tailwind CSS + Focus Mode）+ 截图采集 |
+| 4 | 产出高保真 HTML 原型 | 单文件 HTML 原型（Tailwind CSS + Focus Mode + Impeccable Skills 设计优化）+ 截图采集 |
 | 5 | 输出流程图 | Mermaid 代码 + PNG 图片导出 |
 | 6 | 产出最终版 PRD | HTML 版（iframe 沙盒切片）+ Word 版（截图+链接，飞书可导入） |
 | 7 | 版本迭代与管理 | 物理隔离 + 版本切换器 + 双格式同步联动 |
@@ -78,6 +79,33 @@
 
 ---
 
+## 🎨 Impeccable Skills 前端设计工具链
+
+本工作流已深度集成 [Impeccable Skills](https://impeccable.style/)（21 个专业前端设计指令），在步骤四生成 HTML 原型时**强制调用**以确保专业级 UI 质量。
+
+### 安装 Impeccable Skills
+
+```bash
+npx skills add pbakaus/impeccable
+```
+
+### 原型生成阶段必须调用的指令
+
+| 阶段 | 指令 | 作用 |
+|------|------|------|
+| 布局 | `/arrange` | 优化元素间距、对齐和视觉层级 |
+| 排版 | `/typeset` | 优化字体大小、行高、字重层级 |
+| 配色 | `/colorize` | 优化颜色对比度、品牌一致性和可访问性 |
+| 交互 | `/delight` | 添加微交互和过渡动效 |
+| 打磨 | `/polish` | 整体视觉打磨 |
+| 自查 | `/critique` | 设计质量评估和反馈 |
+
+### 可选进阶指令
+
+`/adapt`（响应式）、`/animate`（动画）、`/clarify`（可读性）、`/shape`（图形）、`/bolder`（冲击力）、`/quieter`（降噪）、`/normalize`（一致性）、`/impeccable`（全流程）、`/overdrive`（极致效果）
+
+---
+
 ## 📋 Word 版 PRD 与飞书集成说明
 
 本工作流新增了 Word 版 PRD 的自动生成能力，专为**飞书知识库导入**场景优化：
@@ -110,4 +138,4 @@
 
 ---
 
-> 💡 **进阶推荐**：为了让生成的 HTML 原型达到专业级的设计效果，强烈建议搭配 [Impeccable Skills](https://impeccable.style/)（前端设计专家指令集）一起使用！
+> 💡 **设计质量保障**：本工作流已内置 [Impeccable Skills](https://impeccable.style/) 前端设计工具链，原型生成阶段会自动调用专业设计指令，无需额外配置。首次使用请先运行 `npx skills add pbakaus/impeccable` 完成安装。
