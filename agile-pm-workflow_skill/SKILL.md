@@ -91,9 +91,25 @@ description: "Guides novice PMs through a 7-step agile workflow: dialogue-based 
 3. 必须包含关键的交互状态（如：默认页、展开弹窗、成功提示等）。可以通过简单的原生 JavaScript 或 URL Hash (`#page1`) 来实现页面切换。
 4. **沙盒锁定支持 (Focus Mode)**：在编写原生 JavaScript 时，必须加入 URL 参数解析逻辑（如 `?focus=feature_id`）。当处于 focus 模式时，锁定或遮罩其他无关的交互区域（如设置 `pointer-events: none; opacity: 0.5`），仅允许用户操作对应的功能点。这为了后续在 PRD 嵌入原型时，实现“仅展示对应功能交互”的需求。
 
-### 4.2 💡 强烈推荐使用 Impeccable Skills
-在生成原型前，AI 必须主动向用户推荐业界顶级的前端设计指令集：
-> “为了让原型达到专业级的高级 UI 效果，我强烈建议您使用 [Impeccable](https://impeccable.style/) 提供的设计技能库。如果您在编辑器中（如 Trae/Cursor）已经安装了 `frontend-design` 或 `teach-impeccable` 等指令，请告诉我，我将调用这些专业的前端设计规范为您生成精美的界面。”
+### 4.2 强制使用 Impeccable Skills 进行前端设计
+在生成 HTML 原型时，**必须调用已安装的 Impeccable Skills** 来确保专业级的前端设计质量。以下是在原型生成的不同阶段必须调用的指令：
+
+1. **布局阶段**：调用 `/arrange` 进行布局优化，确保元素间距、对齐和视觉层级合理。
+2. **排版阶段**：调用 `/typeset` 进行文字排版优化，确保字体大小、行高、字重层级清晰。
+3. **配色阶段**：调用 `/colorize` 进行配色方案优化，确保颜色对比度、品牌一致性和可访问性。
+4. **交互细节**：调用 `/delight` 添加微交互和过渡动效，提升用户体验。
+5. **最终审查**：调用 `/polish` 进行整体视觉打磨，再调用 `/critique` 进行设计质量自查。
+
+**可选的进阶优化指令**：
+- `/adapt` — 响应式适配优化
+- `/animate` — 动画效果增强
+- `/clarify` — 信息架构和可读性优化
+- `/shape` — 图标和图形元素优化
+- `/bolder` — 增强视觉冲击力
+- `/quieter` — 降低视觉噪音
+- `/normalize` — 跨浏览器一致性
+
+**注意**：这些指令已通过 `npx skills add pbakaus/impeccable` 安装到本机，可直接调用。
 
 ### 4.3 原型审查与 PRD 双向同步更新 (核心迭代循环) 【等待用户反馈】
 - 将生成的 HTML 代码或预览呈现给用户。
@@ -137,7 +153,7 @@ PRD 必须严格遵循以下标准目录结构进行组织：
 ### 6.2 HTML 版 PRD 要求
 - 必须使用 **HTML 格式** 输出，确保独立运行可用。
 - **排版与 UI 规范**：
-  - **动态 UI 升级 (Impeccable Skills)**：如果用户在工作流执行期间安装了 Impeccable Skills，你必须在生成或更新 PRD 时调用相关指令（如 `/typeset`, `/arrange`, `/colorize`），对 PRD 的排版和色彩进行高级 UI 升级。
+  - **动态 UI 升级 (Impeccable Skills)**：在生成或更新 HTML 版 PRD 时，必须调用 `/typeset`（排版）、`/arrange`（布局）、`/colorize`（配色）等已安装的 Impeccable 指令，对 PRD 页面进行高级 UI 升级。
   - **目录导航 (TOC)**：页面左侧或顶部必须提供悬浮的目录导航，方便快速跳转。
   - **字体层级与间距**：严格区分 H1（页面标题）、H2（章节标题）、H3（模块标题），设置合适的 `line-height` (如 1.6) 和段落间距（如 `margin-bottom: 1.5rem`），确保阅读体验舒适。
 - **版本切换下拉菜单**：HTML 版页面右上角必须预留版本切换功能。
