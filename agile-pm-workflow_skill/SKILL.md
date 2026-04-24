@@ -91,25 +91,75 @@ description: "Guides novice PMs through a 7-step agile workflow: dialogue-based 
 3. 必须包含关键的交互状态（如：默认页、展开弹窗、成功提示等）。可以通过简单的原生 JavaScript 或 URL Hash (`#page1`) 来实现页面切换。
 4. **沙盒锁定支持 (Focus Mode)**：在编写原生 JavaScript 时，必须加入 URL 参数解析逻辑（如 `?focus=feature_id`）。当处于 focus 模式时，锁定或遮罩其他无关的交互区域（如设置 `pointer-events: none; opacity: 0.5`），仅允许用户操作对应的功能点。这为了后续在 PRD 嵌入原型时，实现“仅展示对应功能交互”的需求。
 
-### 4.2 强制使用 Impeccable Skills 进行前端设计
-在生成 HTML 原型时，**必须调用已安装的 Impeccable Skills** 来确保专业级的前端设计质量。以下是在原型生成的不同阶段必须调用的指令：
+### 4.2 强制使用 UI/UX Pro Max 进行设计系统生成
+在生成 HTML 原型之前，**必须先调用 UI/UX Pro Max Skill** 生成完整的设计系统，确保专业级的设计决策和视觉一致性。
 
-1. **布局阶段**：调用 `/arrange` 进行布局优化，确保元素间距、对齐和视觉层级合理。
-2. **排版阶段**：调用 `/typeset` 进行文字排版优化，确保字体大小、行高、字重层级清晰。
-3. **配色阶段**：调用 `/colorize` 进行配色方案优化，确保颜色对比度、品牌一致性和可访问性。
-4. **交互细节**：调用 `/delight` 添加微交互和过渡动效，提升用户体验。
-5. **最终审查**：调用 `/polish` 进行整体视觉打磨，再调用 `/critique` 进行设计质量自查。
+#### 4.2.1 设计系统生成（必须执行）
+在原型开发前，必须执行以下命令获取完整的设计系统推荐：
 
-**可选的进阶优化指令**：
-- `/adapt` — 响应式适配优化
-- `/animate` — 动画效果增强
-- `/clarify` — 信息架构和可读性优化
-- `/shape` — 图标和图形元素优化
-- `/bolder` — 增强视觉冲击力
-- `/quieter` — 降低视觉噪音
-- `/normalize` — 跨浏览器一致性
+```bash
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "<产品类型> <行业> <关键词>" --design-system -p "项目名称"
+```
 
-**注意**：这些指令已通过 `npx skills add pbakaus/impeccable` 安装到本机，可直接调用。
+**示例**：
+```bash
+# 美容 SPA 服务类产品
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "beauty spa wellness service" --design-system -p "Serenity Spa"
+
+# AI 搜索工具产品
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "AI search tool modern minimal" --design-system -p "AI Search"
+
+# 金融科技产品
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "fintech crypto trading" --design-system -p "CryptoTrade"
+```
+
+**设计系统输出包含**：
+1. **产品模式推荐**：基于产品类型的最佳设计模式
+2. **风格选择**：从 67 种 UI 风格中匹配（glassmorphism、minimalism、brutalism 等）
+3. **色彩方案**：从 161 个色板中推荐适合的配色（含 Tailwind CSS 类名）
+4. **字体配对**：从 57 组字体配对中推荐（含 Google Fonts 导入代码）
+5. **视觉效果**：阴影、模糊、圆角等效果参数
+6. **反模式警告**：需要避免的设计陷阱
+
+#### 4.2.2 补充领域搜索（按需执行）
+如需深入某个设计维度，可使用领域搜索：
+
+```bash
+# 获取更多风格选项
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "glassmorphism dark" --domain style
+
+# 获取 UX 最佳实践
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "animation accessibility" --domain ux
+
+# 获取图表推荐
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "real-time dashboard" --domain chart
+
+# 获取 React Native 性能优化
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "list performance navigation" --stack react-native
+```
+
+**可用领域**：`product`、`style`、`typography`、`color`、`landing`、`chart`、`ux`、`google-fonts`、`react`、`web`、`prompt`
+
+#### 4.2.3 设计系统持久化（可选）
+如需跨会话保存设计系统，添加 `--persist` 参数：
+
+```bash
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "<查询>" --design-system --persist -p "项目名称"
+```
+
+这将创建：
+- `design-system/MASTER.md` — 全局设计规范
+- `design-system/pages/` — 页面级设计覆盖
+
+#### 4.2.4 原型实现阶段
+基于设计系统推荐，使用 Tailwind CSS 实现原型时：
+1. 严格遵循推荐的色彩方案（使用推荐的 Tailwind 类名）
+2. 应用推荐的字体配对（复制 Google Fonts 导入代码）
+3. 实现推荐的视觉效果（阴影、圆角、模糊等）
+4. 参考 UX 快速参考清单（10 大优先级类别）
+5. 避免设计系统中标注的反模式
+
+**注意**：UI/UX Pro Max Skill 已集成到本工作流，无需额外安装。如需单独使用，请参考 `~/.claude/skills/ui-ux-pro-max/skill.md`。
 
 ### 4.3 原型审查与 PRD 双向同步更新 (核心迭代循环) 【等待用户反馈】
 - 将生成的 HTML 代码或预览呈现给用户。

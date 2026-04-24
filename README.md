@@ -10,7 +10,7 @@
 
 - 💬 **告别填表，对话式采集**：采用灵活的对话式需求采集，AI 主动评估维度并温和追问，极大地降低了认知门槛。
 - 🎨 **原型先行验证**：在编写复杂的业务逻辑前，先让 AI 产出高保真 HTML 原型。通过"看图说话"，直观发现逻辑漏洞。
-- 🎯 **集成 Impeccable 专业前端设计工具链**：原型生成阶段强制调用 [Impeccable Skills](https://impeccable.style/) 的 21 个设计指令（`/arrange` 布局、`/typeset` 排版、`/colorize` 配色、`/delight` 微交互、`/polish` 打磨、`/critique` 自查等），确保产出专业级 UI 质量，告别"AI 味"设计。
+- 🎯 **集成 UI/UX Pro Max 设计智能系统**：原型生成阶段强制调用 UI/UX Pro Max Skill，从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐最适合产品类型的设计方案，确保产出专业级 UI 质量，告别"AI 味"设计。
 - 🔗 **PRD 与原型双向联动**：文档与原型不再割裂。在工作流中，PRD 逻辑和原型视觉同步进行迭代优化，保证所想即所见。
 - 🧩 **沙盒切片，所见即所得的 PRD**：最终产出的 HTML 版 PRD 中，直接以 `iframe` 沙盒切片的形式嵌入可交互的原型。左边是规则描述，右边是真实界面。
 - 📄 **双格式 PRD 产出（HTML + Word）**：同时生成 HTML 交互版和 Word 文档版（`.docx`）。Word 版使用 `python-docx` 生成，可直接导入**飞书知识库**，原型以截图+链接方式呈现，流程图以 PNG 静态图片插入。
@@ -79,30 +79,52 @@
 
 ---
 
-## 🎨 Impeccable Skills 前端设计工具链
+## 🎨 UI/UX Pro Max 设计智能系统
 
-本工作流已深度集成 [Impeccable Skills](https://impeccable.style/)（21 个专业前端设计指令），在步骤四生成 HTML 原型时**强制调用**以确保专业级 UI 质量。
+本工作流已深度集成 **UI/UX Pro Max Skill**（67 种 UI 风格、161 个色板、57 组字体配对、99 条 UX 指南），在步骤四生成 HTML 原型前**强制调用**以确保专业级设计决策和视觉一致性。
 
-### 安装 Impeccable Skills
+### UI/UX Pro Max 核心能力
+
+| 维度 | 数据规模 | 说明 |
+|------|---------|------|
+| UI 风格 | 67 种 | glassmorphism、minimalism、brutalism、neumorphism 等 |
+| 色彩方案 | 161 个 | 按产品类型分类，含 Tailwind CSS 类名 |
+| 字体配对 | 57 组 | 含 Google Fonts 导入代码 |
+| UX 指南 | 99 条 | 10 大优先级类别（可访问性、交互、性能等） |
+| 产品类型 | 161 种 | SaaS、电商、工具、服务等，含推理规则 |
+| 图表类型 | 25 种 | 趋势、对比、时间线、漏斗等 |
+
+### 设计系统生成命令
+
+在步骤四原型开发前，必须执行：
 
 ```bash
-npx skills add pbakaus/impeccable
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "<产品类型> <行业> <关键词>" --design-system -p "项目名称"
 ```
 
-### 原型生成阶段必须调用的指令
+**示例**：
+```bash
+# 美容 SPA 服务
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "beauty spa wellness service" --design-system -p "Serenity Spa"
 
-| 阶段 | 指令 | 作用 |
-|------|------|------|
-| 布局 | `/arrange` | 优化元素间距、对齐和视觉层级 |
-| 排版 | `/typeset` | 优化字体大小、行高、字重层级 |
-| 配色 | `/colorize` | 优化颜色对比度、品牌一致性和可访问性 |
-| 交互 | `/delight` | 添加微交互和过渡动效 |
-| 打磨 | `/polish` | 整体视觉打磨 |
-| 自查 | `/critique` | 设计质量评估和反馈 |
+# AI 搜索工具
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "AI search tool modern minimal" --design-system -p "AI Search"
+```
 
-### 可选进阶指令
+### 领域搜索（按需使用）
 
-`/adapt`（响应式）、`/animate`（动画）、`/clarify`（可读性）、`/shape`（图形）、`/bolder`（冲击力）、`/quieter`（降噪）、`/normalize`（一致性）、`/impeccable`（全流程）、`/overdrive`（极致效果）
+```bash
+# 风格选项
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "glassmorphism dark" --domain style
+
+# UX 最佳实践
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "animation accessibility" --domain ux
+
+# 图表推荐
+python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "real-time dashboard" --domain chart
+```
+
+**可用领域**：`product`、`style`、`typography`、`color`、`landing`、`chart`、`ux`、`google-fonts`、`react`、`web`、`prompt`
 
 ---
 
@@ -138,4 +160,4 @@ npx skills add pbakaus/impeccable
 
 ---
 
-> 💡 **设计质量保障**：本工作流已内置 [Impeccable Skills](https://impeccable.style/) 前端设计工具链，原型生成阶段会自动调用专业设计指令，无需额外配置。首次使用请先运行 `npx skills add pbakaus/impeccable` 完成安装。
+> 💡 **设计质量保障**：本工作流已内置 **UI/UX Pro Max Skill** 设计智能系统，原型生成阶段会自动调用设计系统生成命令，从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐，无需额外配置。详见上方"🎨 UI/UX Pro Max 设计智能系统"章节。
