@@ -10,7 +10,7 @@
 
 - 💬 **告别填表，对话式采集**：采用灵活的对话式需求采集，AI 主动评估维度并温和追问，极大地降低了认知门槛。
 - 🎨 **原型先行验证**：在编写复杂的业务逻辑前，先让 AI 产出高保真 HTML 原型。通过"看图说话"，直观发现逻辑漏洞。
-- 🎯 **集成 UI/UX Pro Max 设计智能系统**：原型生成阶段强制调用 UI/UX Pro Max Skill，从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐最适合产品类型的设计方案，确保产出专业级 UI 质量，告别"AI 味"设计。
+- 🎯 **双重设计保障系统（UI/UX Pro Max + Impeccable Skills）**：采用两阶段设计流程。第一阶段使用 UI/UX Pro Max 从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐设计方向；第二阶段使用 Impeccable Skills 的 6 个专业指令（/arrange、/typeset、/colorize、/delight、/polish、/critique）对原型进行细节打磨，确保从设计方向到视觉细节的全面专业化。
 - 🔗 **PRD 与原型双向联动**：文档与原型不再割裂。在工作流中，PRD 逻辑和原型视觉同步进行迭代优化，保证所想即所见。
 - 🧩 **沙盒切片，所见即所得的 PRD**：最终产出的 HTML 版 PRD 中，直接以 `iframe` 沙盒切片的形式嵌入可交互的原型。左边是规则描述，右边是真实界面。
 - 📄 **双格式 PRD 产出（HTML + Word）**：同时生成 HTML 交互版和 Word 文档版（`.docx`）。Word 版使用 `python-docx` 生成，可直接导入**飞书知识库**，原型以截图+链接方式呈现，流程图以 PNG 静态图片插入。
@@ -79,11 +79,15 @@
 
 ---
 
-## 🎨 UI/UX Pro Max 设计智能系统
+## 🎨 双重设计保障系统
 
-本工作流已深度集成 **UI/UX Pro Max Skill**（67 种 UI 风格、161 个色板、57 组字体配对、99 条 UX 指南），在步骤四生成 HTML 原型前**强制调用**以确保专业级设计决策和视觉一致性。
+本工作流采用**两阶段设计流程**，确保从设计方向到视觉细节的全面专业化：
 
-### UI/UX Pro Max 核心能力
+### 第一阶段：UI/UX Pro Max 设计系统生成
+
+在步骤四生成 HTML 原型前，**强制调用 UI/UX Pro Max Skill** 确定设计方向和核心设计系统。
+
+#### UI/UX Pro Max 核心能力
 
 | 维度 | 数据规模 | 说明 |
 |------|---------|------|
@@ -94,7 +98,7 @@
 | 产品类型 | 161 种 | SaaS、电商、工具、服务等，含推理规则 |
 | 图表类型 | 25 种 | 趋势、对比、时间线、漏斗等 |
 
-### 设计系统生成命令
+#### 设计系统生成命令
 
 在步骤四原型开发前，必须执行：
 
@@ -111,7 +115,7 @@ python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "beauty spa wellness se
 python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "AI search tool modern minimal" --design-system -p "AI Search"
 ```
 
-### 领域搜索（按需使用）
+#### 领域搜索（按需使用）
 
 ```bash
 # 风格选项
@@ -125,6 +129,23 @@ python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "real-time dashboard" -
 ```
 
 **可用领域**：`product`、`style`、`typography`、`color`、`landing`、`chart`、`ux`、`google-fonts`、`react`、`web`、`prompt`
+
+### 第二阶段：Impeccable Skills 前端设计打磨
+
+在基于设计系统完成 HTML 原型初稿后，**强制调用 Impeccable Skills** 进行专业级打磨。
+
+#### Impeccable Skills 6 大指令
+
+| 指令 | 功能 | 应用场景 |
+|------|------|---------|
+| `/arrange` | 布局优化 | 确保元素间距、对齐和视觉层级合理 |
+| `/typeset` | 排版优化 | 确保字体大小、行高、字重层级清晰 |
+| `/colorize` | 配色优化 | 确保颜色对比度、品牌一致性和可访问性 |
+| `/delight` | 交互细节 | 添加微交互和过渡动效，提升用户体验 |
+| `/polish` | 整体打磨 | 进行整体视觉打磨，统一细节处理 |
+| `/critique` | 质量自查 | 进行设计质量自查，识别潜在问题并优化 |
+
+**使用流程**：原型初稿完成后，依次执行上述 6 个指令，确保视觉细节和交互体验达到专业水准。
 
 ---
 
@@ -160,4 +181,4 @@ python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "real-time dashboard" -
 
 ---
 
-> 💡 **设计质量保障**：本工作流已内置 **UI/UX Pro Max Skill** 设计智能系统，原型生成阶段会自动调用设计系统生成命令，从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐，无需额外配置。详见上方"🎨 UI/UX Pro Max 设计智能系统"章节。
+> 💡 **设计质量保障**：本工作流已内置**双重设计保障系统**。第一阶段由 **UI/UX Pro Max Skill** 从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐设计方向；第二阶段由 **Impeccable Skills** 的 6 个专业指令（/arrange、/typeset、/colorize、/delight、/polish、/critique）对原型进行细节打磨，无需额外配置。详见上方"🎨 双重设计保障系统"章节。
