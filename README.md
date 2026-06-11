@@ -11,13 +11,11 @@
 - 💬 **告别填表，对话式采集**：采用灵活的对话式需求采集，AI 主动评估维度并温和追问，极大地降低了认知门槛。
 - 🎨 **原型先行验证**：在编写复杂的业务逻辑前，先让 AI 产出高保真 HTML 原型。通过"看图说话"，直观发现逻辑漏洞。
 - 🎯 **双重设计保障系统（UI/UX Pro Max + Impeccable Skills）**：采用两阶段设计流程。第一阶段使用 UI/UX Pro Max 从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐设计方向；第二阶段使用 Impeccable Skills 的 6 个专业指令（/arrange、/typeset、/colorize、/delight、/polish、/critique）对原型进行细节打磨，确保从设计方向到视觉细节的全面专业化。
-- 🔗 **PRD 与原型双向联动**：文档与原型不再割裂。在工作流中，PRD 逻辑和原型视觉同步进行迭代优化，保证所想即所见。
-- 🧩 **沙盒切片，所见即所得的 PRD**：最终产出的 HTML 版 PRD 中，直接以 `iframe` 沙盒切片的形式嵌入可交互的原型。左边是规则描述，右边是真实界面。
-- 📄 **双格式 PRD 产出（HTML + Word）**：同时生成 HTML 交互版和 Word 文档版（`.docx`）。Word 版使用 `python-docx` 生成，可直接导入**飞书知识库**，原型以截图+链接方式呈现，流程图以 PNG 静态图片插入。
-- 📸 **原型截图自动采集**：原型定稿后自动截图存档，供 Word 版 PRD 内嵌引用，确保离线文档也有完整的视觉参考。
-- 📊 **Mermaid 流程图 + PNG 导出**：使用 Mermaid 语法绘制流程图，同时导出 PNG 图片供 Word 版使用（飞书导入 Word 后无法渲染 Mermaid 代码）。
-- 📂 **自动化项目初始化**：内置"步骤零"，一键生成标准的产品项目文件夹结构（PRD、原型、流程图、截图、附件等），告别文件存放混乱。
-- 📈 **结构化版本迭代管理**：规范化历史版本控制。通过物理隔离（如从 `v1.0` 复制出 `v1.1` 进行迭代）与 PRD 右上角的"版本切换器"，轻松管理项目的生命周期。HTML 版和 Word 版同步迭代，变更日志双向联动。
+- 🔗 **PRD 与原型双向联动**：文档与原型不再割裂。在工作流中，PRD 逻辑和原型视觉同步进行迭代优化，保证所想即所见。详细方案中通过 **Markdown 链接 + Hash 锚点**（如 `prototype.html#login`）一键直达原型对应页面。
+- 📄 **极速 Markdown PRD 产出**：PRD 统一采用 **Markdown 单格式**，生成速度快、便于版本对比（git diff）。可直接导入**飞书 / Notion / 语雀 / GitHub** 等主流知识库，原生支持标题层级、表格、Mermaid 流程图渲染。
+- 📊 **Mermaid 流程图原生嵌入**：使用 Mermaid 语法绘制流程图，直接以代码块嵌入 Markdown，无需 PNG 导出。主流知识库平台均原生渲染。
+- 📂 **自动化项目初始化**：内置"步骤二"，一键生成标准的产品项目文件夹结构（PRD、原型、流程图、附件等），告别文件存放混乱。
+- 📈 **结构化版本迭代管理**：规范化历史版本控制。通过物理隔离（如从 `v1.0` 复制出 `v1.1` 进行迭代），轻松管理项目的生命周期。变更日志与原型链接路径同步联动。
 
 ---
 
@@ -35,12 +33,12 @@
 | 步骤 | 名称 | 产出物 |
 |------|------|--------|
 | 1 | 对话式需求采集与确认 | 结构化需求理解（至少 3 轮深度追问） |
-| 2 | 项目初始化与目录搭建 | `prd/` `prototype/` `flowcharts/` `screenshots/` `annex/` `templates/` |
-| 3 | 输出详细的第一版 PRD | `prd_v1.0.html` + `prd_v1.0.docx`（双格式） |
-| 4 | 产出高保真 HTML 原型 | 单文件 HTML 原型（Tailwind CSS + Focus Mode + Impeccable Skills 设计优化）+ 截图采集 |
-| 5 | 输出流程图 | Mermaid 代码 + PNG 图片导出 |
-| 6 | 产出最终版 PRD | HTML 版（iframe 沙盒切片）+ Word 版（截图+链接，飞书可导入） |
-| 7 | 版本迭代与管理 | 物理隔离 + 版本切换器 + 双格式同步联动 |
+| 2 | 项目初始化与目录搭建 | `prd/` `prototype/` `flowcharts/` `annex/` `templates/` |
+| 3 | 输出详细的第一版 PRD | `prd_v1.0.md`（Markdown 单格式） |
+| 4 | 产出高保真 HTML 原型 | 单文件 HTML 原型（Tailwind CSS + Hash 路由 + UI/UX Pro Max + Impeccable Skills 设计优化） |
+| 5 | 输出流程图 | Mermaid 代码块（直接嵌入 PRD） |
+| 6 | 产出最终版 PRD | `prd_v1.0.md`（Markdown，含 Mermaid 流程图 + 原型链接） |
+| 7 | 版本迭代与管理 | 物理隔离 + 原型链接路径同步联动 |
 
 ---
 
@@ -50,7 +48,7 @@
 
 1. 打开 `pm_workflow_template/pm_workflow_definition.md`，将里面的全部内容发送给你的 AI 助手。
 2. 附上你最原始、甚至有些模糊的想法（例如："我想做一个给装修工人用的打卡小程序，能拍照就行"）。
-3. 跟随 AI 的引导，像聊天一样依次完成：**需求采集与确认 -> 建立目录架构 -> 产出详细的第一版 PRD（HTML + Word）-> HTML 原型生成 -> 流程图绘制 -> 最终版双格式 PRD**。
+3. 跟随 AI 的引导，像聊天一样依次完成：**需求采集与确认 -> 建立目录架构 -> 产出详细的第一版 PRD（Markdown）-> HTML 原型生成 -> 流程图绘制 -> 最终版 Markdown PRD**。
 
 *(详细的模板说明与使用指南，请查看 `pm_workflow_template/README.md`)*
 
@@ -149,14 +147,15 @@ python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "real-time dashboard" -
 
 ---
 
-## 📋 Word 版 PRD 与飞书集成说明
+## 📋 Markdown PRD 与主流知识库集成说明
 
-本工作流新增了 Word 版 PRD 的自动生成能力，专为**飞书知识库导入**场景优化：
+本工作流的 PRD 统一采用 **Markdown 单格式**，专为快速产出与多平台兼容场景优化：
 
-- 使用 `python-docx` 库生成 `.docx` 文件，标题层级使用 Word 原生样式，飞书导入后自动生成目录。
-- 原型展示采用**截图 + 链接**方式：截图内嵌在文档中，旁边附上原型 HTML 的路径或在线链接，方便读者在浏览器中体验完整交互。
-- 流程图采用**PNG 静态图片**插入，因为飞书导入 Word 后无法渲染 Mermaid 代码。
-- 项目目录中新增 `screenshots/` 文件夹，用于存放原型页面截图，供 Word 版引用。
+- **生成速度快**：相较于 HTML / Word 双格式，Markdown 生成无需依赖 `python-docx` 或浏览器渲染，AI 输出即可使用。
+- **飞书 / Notion / 语雀 / GitHub 通用**：标题层级、表格、Mermaid 流程图均原生支持。粘贴或导入即获得专业排版。
+- **原型展示采用 Markdown 链接 + Hash 锚点**：如 `[👉 查看交互原型 - 登录](../prototype/prototype_v1.0.html#login)`，点击直接跳转到原型对应页面，体验完整交互。
+- **流程图直接嵌入**：使用 ` ```mermaid ` 代码块，无需导出 PNG。
+- **版本对比友好**：纯文本格式，git diff 一目了然，便于团队协作评审。
 
 ---
 
@@ -164,17 +163,12 @@ python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "real-time dashboard" -
 
 ```
 项目名称/
-├── prd/                    # PRD 文档（HTML + Word 双格式）
-│   ├── prd_v1.0.html       # HTML 交互版（含 iframe 原型切片）
-│   └── prd_v1.0.docx       # Word 版（飞书可导入，截图+链接）
+├── prd/                    # PRD 文档（Markdown 格式）
+│   └── prd_v1.0.md         # 含 Mermaid 流程图 + 原型链接
 ├── prototype/              # 高保真 HTML 原型
 │   └── prototype_v1.0.html
-├── flowcharts/             # Mermaid 流程图 + PNG 导出
-│   ├── main_flow.mmd
-│   └── main_flow.png
-├── screenshots/            # 原型页面截图（供 Word 版引用）
-│   ├── login_default.png
-│   └── dashboard.png
+├── flowcharts/             # Mermaid 流程图源文件（按需独立维护）
+│   └── main_flow.mmd
 ├── annex/                  # 附件（数据字典、参考资料等）
 └── templates/              # 工作流模板
 ```
