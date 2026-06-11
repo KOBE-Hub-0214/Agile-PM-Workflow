@@ -9,8 +9,11 @@
 ## ✨ 核心亮点
 
 - 💬 **告别填表，对话式采集**：采用灵活的对话式需求采集，AI 主动评估维度并温和追问，极大地降低了认知门槛。
+- ⚡ **智能模式切换（快速/标准/深度）**🆕：AI 自动评估需求复杂度，推荐合适的工作流模式。简单需求 2 轮追问 + 简化流程，复杂需求 5 轮追问 + 增强流程，灵活高效。
 - 🎨 **原型先行验证**：在编写复杂的业务逻辑前，先让 AI 产出高保真 HTML 原型。通过"看图说话"，直观发现逻辑漏洞。
-- 🎯 **双重设计保障系统（UI/UX Pro Max + Impeccable Skills）**：采用两阶段设计流程。第一阶段使用 UI/UX Pro Max 从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐设计方向；第二阶段使用 Impeccable Skills 的 6 个专业指令（/arrange、/typeset、/colorize、/delight、/polish、/critique）对原型进行细节打磨，确保从设计方向到视觉细节的全面专业化。
+- 🎯 **设计系统推荐但可选**🆕：UI/UX Pro Max + Impeccable Skills 双重设计保障从强制改为推荐。已有设计规范或快速模式下可跳过，灵活适配不同场景。
+- 🤖 **AI 自动生成流程图**🆕：根据原型交互逻辑自动推断并生成 Mermaid 流程图初稿，用户只需确认/微调，无需从零编写。
+- 🔍 **PRD 智能质量检查**🆕：生成 PRD 后自动运行 21 项完整性检查（文档完整性、用户旅程、目标指标、异常覆盖等），并提供自动修复建议。
 - 🔗 **PRD 与原型双向联动**：文档与原型不再割裂。在工作流中，PRD 逻辑和原型视觉同步进行迭代优化，保证所想即所见。详细方案中通过 **Markdown 链接 + Hash 锚点**（如 `prototype.html#login`）一键直达原型对应页面。
 - 📄 **极速 Markdown PRD 产出**：PRD 统一采用 **Markdown 单格式**，生成速度快、便于版本对比（git diff）。可直接导入**飞书 / Notion / 语雀 / GitHub** 等主流知识库，原生支持标题层级、表格、Mermaid 流程图渲染。
 - 📊 **Mermaid 流程图原生嵌入**：使用 Mermaid 语法绘制流程图，直接以代码块嵌入 Markdown，无需 PNG 导出。主流知识库平台均原生渲染。
@@ -23,8 +26,8 @@
 
 本仓库包含两个核心部分：
 
-- `pm_workflow_template/`：包含工作流的核心指令定义（`pm_workflow_definition.md`）、标准 PRD 模板（`prd_template.md`）和详细的使用指南。
-- `agile-pm-workflow_skill/`：已经封装好的 Trae/Cursor 专属 AI 技能（Skill），支持一键安装调用。
+- `pm_workflow_template/`：包含标准 PRD 模板（`prd_template.md`）、工作流指向说明（`workflow.md`）和详细的使用指南。
+- `agile-pm-workflow_skill/`：已经封装好的 Trae/Cursor/Claude Code 专属 AI 技能（Skill），包含完整工作流定义（`SKILL.md`），支持一键安装调用。
 
 ---
 
@@ -46,9 +49,9 @@
 
 如果你**不使用**带 Skill 系统的 IDE，也可以直接在任何 AI 助手（如 ChatGPT, Claude 等）中手动使用这套工作流：
 
-1. 打开 `pm_workflow_template/pm_workflow_definition.md`，将里面的全部内容发送给你的 AI 助手。
+1. 打开 `agile-pm-workflow_skill/SKILL.md`，将里面的全部内容发送给你的 AI 助手。
 2. 附上你最原始、甚至有些模糊的想法（例如："我想做一个给装修工人用的打卡小程序，能拍照就行"）。
-3. 跟随 AI 的引导，像聊天一样依次完成：**需求采集与确认 -> 建立目录架构 -> 产出详细的第一版 PRD（Markdown）-> HTML 原型生成 -> 流程图绘制 -> 最终版 Markdown PRD**。
+3. AI 会自动评估需求复杂度并推荐合适的模式（快速/标准/深度），然后引导你完成：**需求采集与确认 -> 建立目录架构 -> 产出详细的第一版 PRD（Markdown）-> HTML 原型生成 -> AI 自动生成流程图 -> 最终版 Markdown PRD + 质量检查**。
 
 *(详细的模板说明与使用指南，请查看 `pm_workflow_template/README.md`)*
 
