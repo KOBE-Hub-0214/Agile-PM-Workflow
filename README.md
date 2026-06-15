@@ -14,6 +14,8 @@
 - 🎯 **设计系统推荐但可选**🆕：UI/UX Pro Max + Impeccable Skills 双重设计保障从强制改为推荐。已有设计规范或快速模式下可跳过，灵活适配不同场景。
 - 🤖 **AI 自动生成流程图**🆕：根据原型交互逻辑自动推断并生成 Mermaid 流程图初稿，用户只需确认/微调，无需从零编写。
 - 🔍 **PRD 智能质量检查**🆕：生成 PRD 后自动运行 21 项完整性检查（文档完整性、用户旅程、目标指标、异常覆盖等），并提供自动修复建议。
+- 🛡️ **真实性护栏（防 AI 编造）**🆕：PRD 中所有量化指标、业务规则、数据字段必须来自用户确认，否则强制标注 `（AI推断·待确认）`。质量检查改为「举证式」——每一项打勾都需引出 PRD 原文片段，杜绝 AI 自我橡皮图章。
+- ⚙️ **外部 Skill 缺失时自动降级**🆕：UI/UX Pro Max 与 Impeccable Skills 未安装时，AI 不再卡死或伪造输出，会自动切换到「基础设计规范」（Tailwind 默认色板 + 8px 栅格 + 系统字体），主流程不受影响。
 - 🔗 **PRD 与原型双向联动**：文档与原型不再割裂。在工作流中，PRD 逻辑和原型视觉同步进行迭代优化，保证所想即所见。详细方案中通过 **Markdown 链接 + Hash 锚点**（如 `prototype.html#login`）一键直达原型对应页面。
 - 📄 **极速 Markdown PRD 产出**：PRD 统一采用 **Markdown 单格式**，生成速度快、便于版本对比（git diff）。可直接导入**飞书 / Notion / 语雀 / GitHub** 等主流知识库，原生支持标题层级、表格、Mermaid 流程图渲染。
 - 📊 **Mermaid 流程图原生嵌入**：使用 Mermaid 语法绘制流程图，直接以代码块嵌入 Markdown，无需 PNG 导出。主流知识库平台均原生渲染。
@@ -80,13 +82,13 @@
 
 ---
 
-## 🎨 双重设计保障系统
+## 🎨 双重设计保障系统（推荐但可选）
 
-本工作流采用**两阶段设计流程**，确保从设计方向到视觉细节的全面专业化：
+本工作流采用**两阶段设计流程**，确保从设计方向到视觉细节的全面专业化。两个阶段都是**可选**的——若依赖未安装，AI 会自动降级到基础设计规范，主流程不受影响。
 
 ### 第一阶段：UI/UX Pro Max 设计系统生成
 
-在步骤四生成 HTML 原型前，**强制调用 UI/UX Pro Max Skill** 确定设计方向和核心设计系统。
+在步骤四生成 HTML 原型前，**可选调用 UI/UX Pro Max Skill** 确定设计方向和核心设计系统。AI 会先探测脚本是否存在，未安装则自动跳过该阶段。
 
 #### UI/UX Pro Max 核心能力
 
@@ -101,7 +103,7 @@
 
 #### 设计系统生成命令
 
-在步骤四原型开发前，必须执行：
+若 UI/UX Pro Max 已安装，在步骤四原型开发前可执行：
 
 ```bash
 python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "<产品类型> <行业> <关键词>" --design-system -p "项目名称"
@@ -133,7 +135,7 @@ python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "real-time dashboard" -
 
 ### 第二阶段：Impeccable Skills 前端设计打磨
 
-在基于设计系统完成 HTML 原型初稿后，**强制调用 Impeccable Skills** 进行专业级打磨。
+在基于设计系统完成 HTML 原型初稿后，**可选调用 Impeccable Skills** 进行专业级打磨。AI 会先确认指令是否可用，未安装则自动跳过。
 
 #### Impeccable Skills 6 大指令
 
@@ -146,7 +148,7 @@ python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "real-time dashboard" -
 | `/polish` | 整体打磨 | 进行整体视觉打磨，统一细节处理 |
 | `/critique` | 质量自查 | 进行设计质量自查，识别潜在问题并优化 |
 
-**使用流程**：原型初稿完成后，依次执行上述 6 个指令，确保视觉细节和交互体验达到专业水准。
+**使用流程**：原型初稿完成后，若 Impeccable Skills 已安装，依次执行上述 6 个指令，确保视觉细节和交互体验达到专业水准。未安装时本阶段会自动跳过。
 
 ---
 
@@ -178,4 +180,6 @@ python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py "real-time dashboard" -
 
 ---
 
-> 💡 **设计质量保障**：本工作流已内置**双重设计保障系统**。第一阶段由 **UI/UX Pro Max Skill** 从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐设计方向；第二阶段由 **Impeccable Skills** 的 6 个专业指令（/arrange、/typeset、/colorize、/delight、/polish、/critique）对原型进行细节打磨，无需额外配置。详见上方"🎨 双重设计保障系统"章节。
+> 💡 **设计质量保障**：本工作流推荐使用**双重设计保障系统**（推荐但可选）。第一阶段由 **UI/UX Pro Max Skill** 从 67 种 UI 风格、161 个色板、57 组字体配对中智能推荐设计方向；第二阶段由 **Impeccable Skills** 的 6 个专业指令（/arrange、/typeset、/colorize、/delight、/polish、/critique）对原型进行细节打磨。**注意**：这两套 Skill 是**独立项目**，不随本仓库自动安装；未检测到时 AI 会自动降级到基础设计规范，主流程不受影响。详见上方"🎨 双重设计保障系统"章节。
+>
+> 🛡️ **真实性护栏**：本工作流内置防 AI 编造机制——PRD 中所有量化指标、业务规则、用户画像与数据字段必须来自用户确认，否则强制标注 `（AI推断·待确认）`；质量检查改为"举证式"，每一项打勾都需引出 PRD 原文片段，杜绝模型自我橡皮图章。详见 `SKILL.md` 步骤三 §3.0 与步骤六 §6.4。
