@@ -39,19 +39,36 @@
 
 ## 安装与使用
 
-### 方式一：AI IDE Skill（推荐）
+### 方式一：一键安装脚本（推荐）
 
-支持 Skill 的 IDE（**Claude Code / Kiro / Trae / Cursor / Codex CLI / Gemini CLI** 等）：
+`git clone` 本仓库后，在仓库根目录运行对应脚本，它会自动把工作流 Skill 和内置的 7 个 Impeccable Skill 铺到目标 IDE 的技能目录：
 
-1. `git clone` 本仓库。
-2. 把 `agile-pm-workflow_skill/` 复制到技能目录，并把 `impeccable_skill/` 下的 **7 个子目录**（`impeccable`/`arrange`/`typeset`/`colorize`/`delight`/`polish`/`critique`）一并复制进去：
-   - **Claude Code / Kiro**：`~/.claude/skills/`
-   - **Trae / Cursor**：`~/.trae/skills/` 或 `~/.cursor/skills/`
-   - **Gemini CLI**：`~/.gemini/skills/`
-   *(无 `skills` 文件夹则手动新建)*
-3. 重启 IDE，输入 `/agile-pm-workflow`，描述你的想法即可。
+```bash
+# macOS / Linux / Git Bash —— 默认装到 Claude Code / Kiro (~/.claude/skills)
+./install.sh
 
-### 方式二：手动粘贴
+# 指定其它 IDE：claude | kiro | trae | cursor | gemini，或直接给一个目录路径
+./install.sh trae
+```
+
+```powershell
+# Windows PowerShell
+.\install.ps1                 # 默认 Claude Code / Kiro
+.\install.ps1 -Target cursor  # 或 claude | kiro | trae | gemini | <路径>
+```
+
+装完重启 IDE，输入 `/agile-pm-workflow` 并描述想法即可。
+
+### 方式二：手动复制
+
+不想跑脚本的话：把 `agile-pm-workflow_skill/` 复制到技能目录，再把 `impeccable_skill/` 下的 **7 个子目录**（`impeccable`/`arrange`/`typeset`/`colorize`/`delight`/`polish`/`critique`）一并复制进去。常见技能目录：
+
+- **Claude Code / Kiro**：`~/.claude/skills/`
+- **Trae / Cursor**：`~/.trae/skills/` 或 `~/.cursor/skills/`
+- **Gemini CLI**：`~/.gemini/skills/`
+- *(无 `skills` 文件夹则手动新建)*
+
+### 方式三：手动粘贴
 
 不带 Skill 系统的助手（ChatGPT / Claude 网页版等）：把 `agile-pm-workflow_skill/SKILL.md` 全文发给 AI，再附上你的想法，它会引导你走完全流程。
 
@@ -86,6 +103,7 @@
 
 ## 仓库结构
 
+- `install.sh` / `install.ps1` — 一键安装脚本（macOS/Linux/Git Bash 与 Windows）
 - `agile-pm-workflow_skill/SKILL.md` — 工作流核心定义（Skill 主体）
 - `impeccable_skill/` — 内置的 Impeccable 设计打磨 Skill（Apache 2.0，见其 `NOTICE.md`）
 - `pm_workflow_template/` — PRD 模板与使用说明
