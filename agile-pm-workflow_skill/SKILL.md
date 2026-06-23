@@ -361,6 +361,46 @@ flowchart TD
 
 ---
 
+## 可视化增强模块（可选）：系统架构图与业务流程白板
+
+**触发条件**：当 PRD 中涉及以下场景时，建议使用 `beautiful-feishu-whiteboard` skill 生成专业的可视化白板：
+- **系统架构图**：多系统协同、数据流转、三方集成关系
+- **复杂业务流程**：跨部门协作流程、端到端业务链路
+- **信息架构图**：产品功能模块分层、数据结构关系
+
+### 为什么需要白板增强？
+- **表达力补充**：Mermaid 适合线性流程图，但对自由布局的系统架构图、多层次信息架构表达力有限。
+- **专业配色**：Beautiful Feishu Whiteboard 提供 35 种精选配色风格，匹配不同正式度和视觉调性。
+- **可编辑交付**：生成的是真实的飞书可编辑白板，利益相关方可在线标注讨论，而非静态截图。
+
+### 推荐风格（按正式度排序）
+| 风格 | 正式度 | 适用场景 |
+|------|--------|----------|
+| **Linen Cut** | 高 | 系统架构图、技术方案、B端产品 |
+| **Editorial Forest** | 高 | 战略规划、复杂业务流程 |
+| **Raw Grid** | 中 | 数据流转图、后台系统架构 |
+| **Coral** | 中 | C端产品流程、用户旅程图 |
+| **Apricot Arc** | 中 | 信息架构、模块关系图 |
+
+### 如何使用？
+1. **安装 skill**（如未安装）：
+   ```bash
+   git clone https://github.com/zarazhangrui/beautiful-feishu-whiteboard.git ~/.claude/skills/beautiful-feishu-whiteboard
+   ```
+2. **调用方式**：在需要绘制系统架构图或业务流程白板时，直接向 AI 描述需求。
+   - 示例："用 beautiful-feishu-whiteboard skill 根据 PRD 中的系统集成章节，绘制三系统协同架构图，使用专业稳重风格。"
+3. **产出物存放**：生成的白板 PNG 图片保存到 `whiteboards/` 子目录，飞书文档链接记录在 PRD 附件中。
+4. **PRD 嵌入**：在"系统架构"章节直接嵌入白板渲染图（Markdown 语法：`![系统架构图](../whiteboards/system_architecture.png)`）
+
+### 前置依赖（仅写入飞书时需要）
+- **Node.js 20+**
+- **lark-cli**：`npm install -g @larksuite/cli`，并完成 `lark-cli config init` 和 `lark-cli auth login` 认证
+- **飞书账号**：白板会写入你的飞书租户
+
+**注意**：即使未完成飞书认证，该 skill 仍可生成白板 SVG 和 PNG 渲染图供本地查看和嵌入 PRD，认证后可一键推送到飞书在线编辑。
+
+---
+
 ## 步骤六：产出最终版 PRD (单一 Markdown 格式)
 
 综合前四步的所有成果，输出最终产品需求文档（`prd/prd_v1.0.md`，覆盖步骤三的初版，补全所有内容）。

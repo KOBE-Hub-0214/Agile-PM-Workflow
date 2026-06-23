@@ -14,6 +14,7 @@
 - ✨ **内置专业设计打磨**：随仓库附带 **Impeccable Skills**，画原型时自动调用 `/arrange` `/typeset` `/colorize` `/delight` `/polish` `/critique`，让原型摆脱"一眼 AI 味"。
 - 🔗 **PRD↔原型双向联动**：详细方案通过 Markdown 链接 + Hash 锚点（如 `prototype.html#login`）一键直达原型对应页面；改原型必同步改 PRD，文档与画面永不脱节。
 - 🤖 **AI 自动生成流程图**：从原型交互逻辑推断 Mermaid 流程图初稿，你只需确认 / 微调。
+- 🖼️ **可视化增强模块（可选）**：集成 [Beautiful Feishu Whiteboard](https://github.com/zarazhangrui/beautiful-feishu-whiteboard)，可生成系统架构图、业务流程白板，补充 Mermaid 在复杂场景下的表达力，提供 35 种专业配色风格。
 - 🛡️ **真实性护栏（防 AI 编造）**：所有量化指标、业务规则、数据字段必须来自用户确认，否则强制标注 `（AI推断·待确认）`；质量检查为"举证式"，每项打勾须引出 PRD 原文。
 - 🔍 **PRD 质量自检**：生成后自动跑完整性检查（文档结构、用户旅程、目标指标、异常覆盖、流程图、技术可行性），并给修复建议。
 - 📄 **极速 Markdown 单格式**：生成快、便于 `git diff`，可直接导入飞书 / Notion / 语雀 / GitHub，原生渲染表格与 Mermaid。
@@ -30,6 +31,7 @@
 | 3 | 详细第一版 PRD | `prd_v1.0.md`（含事实边界规则，禁止编造） |
 | 4 | 高保真 HTML 原型 | 单文件原型（Tailwind + Hash 路由 + Impeccable 打磨） |
 | 5 | 流程图 | Mermaid 代码块（直接嵌入 PRD） |
+| 5+ | 可视化增强（可选） | 系统架构图/业务流程白板（飞书白板 + PNG） |
 | 6 | 最终版 PRD | `prd_v1.0.md`（含流程图 + 原型链接 + 21 项质量检查） |
 | 7 | 版本迭代管理 | 物理隔离 + 原型链接同步 |
 
@@ -84,6 +86,13 @@
 
 > **降级保障**：任一设计 Skill 缺失时，AI 不会报错卡死或伪造输出，而是自动降级到基础设计规范（Tailwind 默认色板 + 8px 栅格 + 系统字体）继续产出。
 
+**可视化增强（可选 · 外部）— Beautiful Feishu Whiteboard**
+用于生成系统架构图、业务流程白板、信息架构图，补充 Mermaid 在复杂场景下的表达力。提供 35 种专业配色风格（Linen Cut、Editorial Forest、Raw Grid 等），输出可编辑的飞书白板。
+
+- 安装：`git clone https://github.com/zarazhangrui/beautiful-feishu-whiteboard.git ~/.claude/skills/beautiful-feishu-whiteboard`
+- 典型场景：多系统协同架构、跨部门协作流程、产品模块分层关系
+- 产出：飞书可编辑白板 + PNG 渲染图（嵌入 PRD）
+
 ---
 
 ## 产出目录结构
@@ -95,6 +104,7 @@
 ├── prototype/            # 高保真 HTML 原型
 │   └── prototype_v1.0.html
 ├── flowcharts/           # Mermaid 源文件（按需独立维护）
+├── whiteboards/          # 系统架构图、业务流程白板（可选）
 ├── annex/                # 附件（数据字典、参考资料等）
 └── templates/            # 工作流模板
 ```
